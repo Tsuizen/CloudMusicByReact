@@ -76,18 +76,3 @@ const SongMenu: FunctionComponent<SongMenuProps> = (props) => {
     </>
   );
 };
-
-function areEqual(prevProps: any, nextProps: any) {
-  /*
-  如果把 nextProps 传入 render 方法的返回结果与
-  将 prevProps 传入 render 方法的返回结果一致则返回 true，
-  否则返回 false
-  */
-  if (prevProps === nextProps) {
-    return true;
-  } else {
-    return false;
-  }
-}
-
-export default memo(SongMenu, areEqual);

@@ -1,13 +1,8 @@
-import { useState } from 'react'
+import { useState } from 'react';
+import { Router } from './router/Router';
 
 function App(): JSX.Element {
-  const [count, setCount] = useState(0)
-  
-  return (
-    <div className="App">
-      
-    </div>
-  )
+  return <Router />;
 }
 
-export default App
+export default App;
