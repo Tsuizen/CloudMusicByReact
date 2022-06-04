@@ -1,15 +1,9 @@
-import { useState } from 'react'
-import logo from './logo.svg'
-import './App.css'
+import { useState } from 'react';
+import { Router } from './router/Router';
 
-function App() {
-  const [count, setCount] = useState(0)
-
-  return (
-    <div className="App">
-      
-    </div>
-  )
+function App(): JSX.Element {
+  
+  return <Router />;
 }
 
-export default App
+export default App;
