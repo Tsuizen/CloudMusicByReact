@@ -10,10 +10,10 @@ const FindMusic = lazy(() => import('../pages/FindMusic'));
 
 export const Router = () => {
   if (window.location.pathname === '/') {
-    window.location.pathname = '/app/findMusic';
+    // window.location.pathname = '/findMusic';
   }
   return (
-    <BrowserRouter basename='/app'>
+    <BrowserRouter basename='/'>
       <InnerRouter />
     </BrowserRouter>
   );
@@ -29,7 +29,8 @@ const InnerRouter = () => {
       children: [
         {
           path: '/',
-          element: <FindMusic />
+          element: <FindMusic />,
+          children: [{}]
         },
         {
           path: '/hello',

@@ -1,10 +1,7 @@
 import axios, { Method } from 'axios';
 
-if (import.meta.env.DEV) {
-  axios.defaults.baseURL = 'http://localhost:3000/';
-} else if (import.meta.env.PROD) {
-  axios.defaults.baseURL = '';
-}
+
+axios.defaults.baseURL = 'http://106.55.186.112:3000/';
 
 // 超时时间
 axios.defaults.timeout = 7000;

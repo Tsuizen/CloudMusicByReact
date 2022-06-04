@@ -5,8 +5,12 @@ module.exports = {
       safelist: [/data-theme$/]
     }
   },
-  darkMode: 'media', // or 'media' or 'class'
-  theme: {},
+  darkMode: false, // or 'media' or 'class'
+  theme: {
+    container: {
+      center: true
+    }
+  },
   variants: {
     extend: {}
   },
