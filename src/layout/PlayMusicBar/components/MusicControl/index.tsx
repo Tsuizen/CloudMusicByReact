@@ -1,22 +1,15 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Howl } from 'howler';
-import { useGetState, useToggle, useUpdateEffect } from 'ahooks';
+import { useGetState, useToggle, useUpdateEffect, useCreation } from 'ahooks';
 import Lyric from 'lyric-parser';
 import { RootState } from '~/redux/store';
 import { getLyric, getMusic } from '~/services/api/music';
 import { secondToMinute } from '~/utils/BaseUtil';
-import {
-  GoEnd,
-  GoStart,
-  Pause,
-  PlayCycle,
-  PlayOne,
-  ShuffleOne,
-  SortOne
-} from '@icon-park/react';
+import { PlayCycle, ShuffleOne, SortOne } from '@icon-park/react';
 import {
   CaretRightOutlined,
+  HeartOutlined,
   PauseOutlined,
   StepBackwardOutlined,
   StepForwardOutlined
@@ -25,7 +18,7 @@ import Slider from '~/components/Slider';
 
 interface MusicControlProps {}
 
-const MusicControl = () => {
+const MusicControl: React.FC<MusicControlProps> = (props) => {
   const [musicUrl, setMusicUrl] = useState<string>(''); // 当前音乐url
   const [totalSeconds, setTotalSeconds] = useState<number>(0); // 音乐总秒数
   const [seconds, setSeconds, getSeconds] = useGetState<number>(0); // 当前秒数
@@ -66,7 +59,7 @@ const MusicControl = () => {
   );
 
   // 歌词对象
-  const lyric = useMemo(
+  const lyric = useCreation(
     () =>
       new Lyric(lyricStr, (props: { lineNum: any; txt: any }) => {
         dispatch({ type: 'setCurrentLyric', playload: props.txt });
@@ -161,29 +154,35 @@ const MusicControl = () => {
     <div className='absolute m-auto left-0 right-0 flex flex-col justify-center space-y-1.5 w-2/6'>
       {/* {控制按钮} */}
       <ul className='flex w-full justify-center items-center space-x-5'>
-        <li>
+        {/* 喜欢按钮 */}
+        <li className='flex justify-center'>
+          <button>
+            <HeartOutlined style={{ fontSize: '150%' }} />
+          </button>
+        </li>
+        <li className='flex justify-center'>
           {playMode === 'loop' && (
             <button
               data-tip='单曲循环'
-              className='tooltip'
-              onClick={() => setPlayMode('loop')}>
-              <PlayCycle theme='outline' size='22' fill='#fff' />
+              className='tooltip m-0'
+              onClick={() => setPlayMode('random')}>
+              <PlayCycle theme='outline' size='22' fill='#000' />
             </button>
           )}
           {playMode === 'random' && (
             <button
               data-tip='随机播放'
               className='tooltip'
-              onClick={() => setPlayMode('loop')}>
-              <ShuffleOne theme='outline' size='22' fill='#fff' />
+              onClick={() => setPlayMode('order')}>
+              <ShuffleOne theme='outline' size='22' fill='#000' />
             </button>
           )}
           {playMode === 'order' && (
             <button
               data-tip='顺序播放'
               className='tooltip'
-              onClick={() => setPlayMode('order')}>
-              <SortOne theme='outline' size='22' fill='#fff' />
+              onClick={() => setPlayMode('loop')}>
+              <SortOne theme='outline' size='22' fill='#000' />
             </button>
           )}
         </li>

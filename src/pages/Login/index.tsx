@@ -2,7 +2,7 @@ import React from 'react'
 
 type LoginProps = {}
 
-const Login = (props: LoginProps) => {
+const Login: React.FC<LoginProps> = (props) => {
   return (
     <div>Login</div>
   )

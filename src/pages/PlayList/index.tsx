@@ -2,7 +2,7 @@ import React from 'react'
 
 type PlayListProps = {}
 
-const PlayList = (props: PlayListProps) => {
+const PlayList: React.FC<PlayListProps> = (props) => {
   return (
     <div>PlayList</div>
   )

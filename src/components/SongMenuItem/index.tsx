@@ -1,5 +1,5 @@
 import { FunctionComponent, useRef, memo } from 'react';
-import { SongMenuType } from '@/types/index';
+import { SongMenuType } from '~/types';
 import { useHover } from 'ahooks';
 import { useNavigate } from 'react-router-dom';
 import { PlayOne, Play, User } from '@icon-park/react';
@@ -8,7 +8,7 @@ interface SongMenuProps {
   menuItem: SongMenuType;
 }
 
-const SongMenu: FunctionComponent<SongMenuProps> = (props) => {
+const SongMenu: React.FC<SongMenuProps> = (props) => {
   const coverRef = useRef<HTMLImageElement>(null!);
   const isHovering = useHover(coverRef); // 是否悬浮图片
   const navigate = useNavigate(); // 使用导航
