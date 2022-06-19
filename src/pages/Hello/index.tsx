@@ -2,7 +2,7 @@ import { FunctionComponent } from 'react';
 
 interface HelloProps {}
 
-const Hello: FunctionComponent<HelloProps> = () => {
+const Hello: React.FC<HelloProps> = (props) => {
   console.log('hello');
   
   return <div>Hello world</div>;

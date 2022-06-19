@@ -2,7 +2,7 @@ import React from 'react';
 
 type FindMusicProps = {};
 
-const FindMusic = (props: FindMusicProps) => {
+const FindMusic: React.FC<FindMusicProps> = (props) => {
   return <div>Find</div>;
 };
 

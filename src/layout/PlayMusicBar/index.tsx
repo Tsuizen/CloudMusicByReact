@@ -1,13 +1,17 @@
 import React from 'react';
 import MusicControl from './components/MusicControl';
+import MusicInfo from './components/MusicInfo';
+import OptionList from './components/OptionList';
 import styles from './index.module.css';
 
-type PlayMusicBarProps = {};
+interface PlayMusicBarProps {}
 
-const PlayMusicBar = (props: PlayMusicBarProps) => {
+const PlayMusicBar: React.FC<PlayMusicBarProps> = (props) => {
   return (
     <div className={styles.container}>
+      <MusicInfo />
       <MusicControl />
+      <OptionList />
     </div>
   );
 };

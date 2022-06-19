@@ -2,7 +2,7 @@ import { FunctionComponent } from 'react';
 
 interface Props {}
 
-const Main: FunctionComponent<Props> = (props) => {
+const Main: React.FC<Props> = (props) => {
   return (
     <div className='flex-1 flex justify-between relative overflow-hidder'>
       {props.children}
