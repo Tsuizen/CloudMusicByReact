@@ -6,10 +6,9 @@ import Lyric from 'lyric-parser';
 import { RootState } from '~/redux/store';
 import { getLyric, getMusic } from '~/services/api/music';
 import { secondToMinute } from '~/utils/BaseUtil';
-import { PlayCycle, ShuffleOne, SortOne } from '@icon-park/react';
+import { Like, PlayCycle, ShuffleOne, SortOne } from '@icon-park/react';
 import {
   CaretRightOutlined,
-  HeartOutlined,
   PauseOutlined,
   StepBackwardOutlined,
   StepForwardOutlined
@@ -80,7 +79,7 @@ const MusicControl: React.FC<MusicControlProps> = (props) => {
       sound.seek(getLastSeconds()); // 音乐跳转
       lyric.seek(getLastSeconds() * 1000); // 歌词跳转
     }
-  });
+  }, [lastSeconds]);
 
   // 加载音乐url和歌词数据
   useEffect(() => {
@@ -157,7 +156,7 @@ const MusicControl: React.FC<MusicControlProps> = (props) => {
         {/* 喜欢按钮 */}
         <li className='flex justify-center'>
           <button>
-            <HeartOutlined style={{ fontSize: '150%' }} />
+            <Like theme='outline' size='24' fill='#5e5e5e' />
           </button>
         </li>
         <li className='flex justify-center'>
@@ -166,7 +165,7 @@ const MusicControl: React.FC<MusicControlProps> = (props) => {
               data-tip='单曲循环'
               className='tooltip m-0'
               onClick={() => setPlayMode('random')}>
-              <PlayCycle theme='outline' size='22' fill='#000' />
+              <PlayCycle theme='outline' size='22' fill='#5e5e5e' />
             </button>
           )}
           {playMode === 'random' && (
@@ -174,7 +173,7 @@ const MusicControl: React.FC<MusicControlProps> = (props) => {
               data-tip='随机播放'
               className='tooltip'
               onClick={() => setPlayMode('order')}>
-              <ShuffleOne theme='outline' size='22' fill='#000' />
+              <ShuffleOne theme='outline' size='22' fill='#5e5e5e' />
             </button>
           )}
           {playMode === 'order' && (
@@ -182,7 +181,7 @@ const MusicControl: React.FC<MusicControlProps> = (props) => {
               data-tip='顺序播放'
               className='tooltip'
               onClick={() => setPlayMode('loop')}>
-              <SortOne theme='outline' size='22' fill='#000' />
+              <SortOne theme='outline' size='22' fill='#5e5e5e' />
             </button>
           )}
         </li>
@@ -236,9 +235,17 @@ const MusicControl: React.FC<MusicControlProps> = (props) => {
       {/* 进度条 */}
       <div className='w-full h-2.5 flex items-center'>
         <span className='w-10 text-center mr-3'>{secondToMinute(seconds)}</span>
-        <Slider />
+        <Slider
+          value={seconds}
+          totalValue={~~totalSeconds}
+          setValue={(value) => {
+            setSeconds(~~value);
+          }}
+          setLastValue={(value) => {
+            setLastSeconds(~~value);
+          }}></Slider>
         <span className='w-10 text-center ml-3'>
-          {secondToMinute(totalSeconds)}
+          {secondToMinute(~~totalSeconds)}
         </span>
       </div>
     </div>

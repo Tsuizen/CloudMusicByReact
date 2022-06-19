@@ -4,7 +4,7 @@ import React, { FunctionComponent, useEffect, useRef, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from '~/redux/store';
 import { getMusicDetail } from '~/services/api/music';
-import { HeartOutlined } from '@ant-design/icons';
+// import { HeartOutlined } from '@ant-design/icons';
 
 import styles from './index.module.css';
 interface MusicInfoProps {}
@@ -112,7 +112,7 @@ const MusicInfo: React.FC<MusicInfoProps> = (props) => {
               className='cursor-pointer'
               theme='outline'
               size='30'
-              fill='#000'
+              fill='#5e5e5e'
               onClick={() => {
                 dispatch({ type: 'setShowMusicDetails', payload: false });
               }}
@@ -122,7 +122,7 @@ const MusicInfo: React.FC<MusicInfoProps> = (props) => {
 
           <div>
             <button className='btn btn-md btn-circle'>
-              <HeartOutlined />
+              <Like theme='outline' size='24' fill='#5e5e5e' />
             </button>
           </div>
         </div>
