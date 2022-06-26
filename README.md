@@ -1,1 +1,1 @@
-### 仿Apple Music客户端的网易云音乐WebApp
+### 仿网易云音乐客户端的WebApp
