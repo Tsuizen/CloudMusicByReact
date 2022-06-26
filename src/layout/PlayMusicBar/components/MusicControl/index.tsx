@@ -244,7 +244,9 @@ const MusicControl: React.FC<MusicControlProps> = (props) => {
           setLastValue={(value) => {
             setLastSeconds(~~value);
           }}></Slider>
+
         <span className='w-10 text-center ml-3'>
+          {' '}
           {secondToMinute(~~totalSeconds)}
         </span>
       </div>

@@ -1,3 +1,5 @@
+import { Icon } from "@icon-park/react/lib/runtime";
+
 // 歌曲类型
 interface SongType {
   id: number; // 歌曲唯一标识
@@ -41,4 +43,10 @@ interface SongMenuType {
   };
 }
 
-export type { SongType, SearchSuggestType, SongMenuType };
+interface MenuType {
+  title: string;
+  key: string;
+  url: string;
+  icon: Icon;
+}
+export type { SongType, SearchSuggestType, SongMenuType, MenuType };
