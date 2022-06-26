@@ -1,5 +1,8 @@
 import { lazy } from 'react';
 import { BrowserRouter, RouteObject, useRoutes } from 'react-router-dom';
+import Fellow from '~/pages/Fellow';
+import FM from '~/pages/FM';
+import Video from '~/pages/Video';
 import Loading from '../components/Loading';
 
 import Layout from '../layout/index';
@@ -10,7 +13,7 @@ const FindMusic = lazy(() => import('../pages/FindMusic'));
 
 export const Router = () => {
   if (window.location.pathname === '/') {
-    // window.location.pathname = '/findMusic';
+    window.location.pathname = '/findMusic';
   }
   return (
     <BrowserRouter basename='/'>
@@ -28,9 +31,21 @@ const InnerRouter = () => {
       element: <Layout />,
       children: [
         {
-          path: '/',
+          path: '/findMusic',
           element: <FindMusic />,
           children: [{}]
+        },
+        {
+          path: '/fm',
+          element: <FM />
+        },
+        {
+          path: '/video',
+          element: <Video />
+        },
+        {
+          path: 'fellow',
+          element: <Fellow />
         },
         {
           path: '/hello',
