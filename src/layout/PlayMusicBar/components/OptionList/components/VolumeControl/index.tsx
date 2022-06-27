@@ -3,6 +3,7 @@ import React, { useState, useRef, useImperativeHandle } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Slider from '~/components/Slider';
 import { RootState } from '~/redux/store';
+import { setCurrentVolume } from '~/redux/slice';
 
 interface VolumeControlProps {
   show: boolean;
@@ -48,7 +49,7 @@ const VolumeControl: React.FC<VolumeControlProps> = (props) => {
         vertical
         value={selectState.currentVolume}
         setValue={(value) => {
-          dispatch({ type: 'setCurrentVolume', playload: value });
+          dispatch({ type: setCurrentVolume, playload: value });
         }}></Slider>
     </div>
   );

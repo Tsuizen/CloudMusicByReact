@@ -1,10 +1,10 @@
-import { Down, Download, FolderPlus, Like } from '@icon-park/react';
+import { Down, Like } from '@icon-park/react';
 import { useEventListener, useTitle } from 'ahooks';
-import React, { FunctionComponent, useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from '~/redux/store';
 import { getMusicDetail } from '~/services/api/music';
-// import { HeartOutlined } from '@ant-design/icons';
+import { setShowMusicDetails } from '~/redux/slice';
 
 import styles from './index.module.css';
 interface MusicInfoProps {}
@@ -81,7 +81,7 @@ const MusicInfo: React.FC<MusicInfoProps> = (props) => {
               className={styles.iconBox}
               ref={upIconRef}
               onClick={() => {
-                dispatch({ type: 'setShowMusicDetails', payload: true });
+                dispatch({ type: setShowMusicDetails, payload: true });
               }}></div>
           </div>
           {/* 歌曲名字和歌手 */}
@@ -114,7 +114,7 @@ const MusicInfo: React.FC<MusicInfoProps> = (props) => {
               size='30'
               fill='#5e5e5e'
               onClick={() => {
-                dispatch({ type: 'setShowMusicDetails', payload: false });
+                dispatch({ type: setShowMusicDetails, payload: false });
               }}
             />
           </div>

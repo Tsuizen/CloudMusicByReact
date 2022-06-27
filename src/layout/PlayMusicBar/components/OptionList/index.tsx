@@ -4,6 +4,7 @@ import { RootState } from '~/redux/store';
 import { MusicList, Share, VolumeNotice } from '@icon-park/react';
 import { useEventListener } from 'ahooks';
 import VolumeControl from './components/VolumeControl';
+import {setShowPlayList } from '~/redux/slice'
 
 interface OptionListProps {}
 
@@ -45,7 +46,7 @@ const OptionList: React.FC<OptionListProps> = (props) => {
             data-tip='播放列表'
             className='tooltip'
             onClick={() => {
-              dispatch({ type: 'setShowPlayList', payload: true });
+              dispatch({ type: setShowPlayList, payload: true });
             }}>
             <MusicList theme='outline' size='22' fill='#5e5e5e' />
           </button>

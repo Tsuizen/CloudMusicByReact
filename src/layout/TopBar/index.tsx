@@ -49,7 +49,7 @@ const TopBar: React.FC<TopBarProps> = (props) => {
       <div className='flex ml-10'>
         {/* 导航按钮 */}
         <div className='flex justify-center items-center'>
-          <div className='tooltip tooltip-bottom' onClick={() => navigate(-1)}>
+          <div onClick={() => navigate(-1)}>
             <Left
               theme='outline'
               className={styles.navBtn}
@@ -58,8 +58,6 @@ const TopBar: React.FC<TopBarProps> = (props) => {
             />
           </div>
           <div
-            className='tooltip tooltip-bottom'
-            data-tip='前进'
             onClick={() => {
               navigate(1);
             }}>

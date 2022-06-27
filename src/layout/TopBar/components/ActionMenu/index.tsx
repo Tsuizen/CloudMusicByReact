@@ -1,16 +1,11 @@
-import {
-  FullScreen,
-  HamburgerButton,
-  Mail,
-  OffScreen,
-  Platte
-} from '@icon-park/react';
+import { FullScreen, HamburgerButton, Mail, OffScreen } from '@icon-park/react';
 import { useFullscreen } from 'ahooks';
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import styles from './index.module.css';
 import avatarUrl from '~/assets/images/profile-pic.png';
+import { setShowDrawer, setShowLoginBox } from '~/redux/slice';
 interface ActionMenuProps {}
 
 const ActionMenu: React.FC<ActionMenuProps> = (props) => {
@@ -26,7 +21,6 @@ const ActionMenu: React.FC<ActionMenuProps> = (props) => {
     <ul className={styles.menuList}>
       <li>
         <div className='indicator mr-5'>
-          <div className='indicator-item badge bg-gray-500 text-xs'>1</div>
           <button className='btn btn-ghost btn-sm rounded-btn'>
             <Mail theme='outline' size='24' fill='#fff' />
           </button>
@@ -42,7 +36,7 @@ const ActionMenu: React.FC<ActionMenuProps> = (props) => {
             </button>
           </div>
         ) : (
-          <div data-tip='全屏' className='tooltip tooltip-bottom'>
+          <div>
             <button
               className='btn btn-ghost btn-sm rounded-btn'
               onClick={enterFullscreen}>
@@ -59,12 +53,14 @@ const ActionMenu: React.FC<ActionMenuProps> = (props) => {
           </div>
         </div>
         {isLogin ? (
-          <span className='ml-2 mr-1'>Tsuizen</span>
+          <span className='ml-2 mr-1' style={{ color: '#fff' }}>
+            Tsuizen
+          </span>
         ) : (
           <button
             className='btn btn-sm btn-ghost ml-2'
             onClick={() => {
-              dispatch({ type: 'setShowLoginBox', payload: true });
+              dispatch({ type: setShowLoginBox, payload: true });
             }}>
             未登录
           </button>
@@ -75,7 +71,7 @@ const ActionMenu: React.FC<ActionMenuProps> = (props) => {
           <button
             className='btn btn-ghost btn-sm rounded-btn'
             onClick={() => {
-              dispatch({ type: 'setShowDrawer', payload: true });
+              dispatch({ type: setShowDrawer, payload: true });
             }}>
             <HamburgerButton theme='outline' size='28' fill='#fff' />
           </button>
