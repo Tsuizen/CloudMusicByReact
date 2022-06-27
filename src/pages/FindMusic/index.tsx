@@ -19,7 +19,6 @@ const FindMusic: FunctionComponent<FindMusicProps> = () => {
   const location = useLocation();
 
   useEffect(() => {
-    console.log(location.pathname);
     switch (location.pathname) {
       case '/':
         setActiveMenu('个性推荐');
@@ -80,7 +79,6 @@ const FindMusic: FunctionComponent<FindMusicProps> = () => {
             </li>
           );
         })}
-       
       </ul>
       {/* 内容 */}
       <Outlet></Outlet>

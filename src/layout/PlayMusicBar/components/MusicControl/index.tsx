@@ -14,6 +14,7 @@ import {
   StepForwardOutlined
 } from '@ant-design/icons';
 import Slider from '~/components/Slider';
+import { setCurrentLyric, setShowLyric } from '~/redux/slice';
 
 interface MusicControlProps {}
 
@@ -49,7 +50,7 @@ const MusicControl: React.FC<MusicControlProps> = (props) => {
         onend: () => {
           setLeft();
           setSeconds(0);
-          dispatch({ type: 'setCurrentLyric', playload: '- - End - -' });
+          dispatch({ type: setCurrentLyric, payload: '- - End - -' });
           clearInterval(timer.current);
           timer.current = null;
         }
@@ -61,7 +62,7 @@ const MusicControl: React.FC<MusicControlProps> = (props) => {
   const lyric = useCreation(
     () =>
       new Lyric(lyricStr, (props: { lineNum: any; txt: any }) => {
-        dispatch({ type: 'setCurrentLyric', playload: props.txt });
+        dispatch({ type: setCurrentLyric, payload: props.txt });
       }),
     [lyricStr]
   );
@@ -226,7 +227,7 @@ const MusicControl: React.FC<MusicControlProps> = (props) => {
               selectState.showLyric === true ? 'text-purple-500' : ''
             } hover:text-purple-500`}
             onClick={() => {
-              dispatch({ type: 'setShowLyric', payload: true });
+              dispatch({ type: setShowLyric, payload: true });
             }}>
             词
           </span>
