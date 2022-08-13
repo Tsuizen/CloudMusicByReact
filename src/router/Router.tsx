@@ -2,6 +2,11 @@ import { lazy } from 'react';
 import { BrowserRouter, RouteObject, useRoutes } from 'react-router-dom';
 import Fellow from '~/pages/Fellow';
 import FM from '~/pages/FM';
+import NewSongList from '~/pages/NewSongList';
+import RankingList from '~/pages/RankingList';
+import Recommend from '~/pages/Recommend';
+import SingerList from '~/pages/SingerList';
+import SongMenuList from '~/pages/SongMenuList';
 import Video from '~/pages/Video';
 import Loading from '../components/Loading';
 
@@ -13,8 +18,9 @@ const FindMusic = lazy(() => import('../pages/FindMusic'));
 
 export const Router = () => {
   if (window.location.pathname === '/') {
-    window.location.pathname = '/findMusic';
+    window.location.pathname = '/findMusic/';
   }
+
   return (
     <BrowserRouter basename='/'>
       <InnerRouter />
@@ -33,7 +39,28 @@ const InnerRouter = () => {
         {
           path: '/findMusic',
           element: <FindMusic />,
-          children: [{}]
+          children: [
+            {
+              path: '',
+              element: <Recommend />
+            },
+            {
+              path: 'songMenuList',
+              element: <SongMenuList />
+            },
+            {
+              path: 'rankingList',
+              element: <RankingList />
+            },
+            {
+              path: 'singerList',
+              element: <SingerList />
+            },
+            {
+              path: 'newSongList',
+              element: <NewSongList />
+            }
+          ]
         },
         {
           path: '/fm',
@@ -44,7 +71,7 @@ const InnerRouter = () => {
           element: <Video />
         },
         {
-          path: 'fellow',
+          path: '/fellow',
           element: <Fellow />
         },
         {

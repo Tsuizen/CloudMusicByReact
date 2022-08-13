@@ -44,18 +44,6 @@ code {
     monospace;
 }
 
-
-/* 字体 */
-@font-face {
-  font-family: "Meng Shen";
-  src: url("../assets/fonts/萌神手写体.ttf");
-}
-
-@font-face {
-  font-family: "Lai Hu";
-  src: url("../assets/fonts/濑户字体简体.ttf");
-}
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
