@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import useBoxDrag from '~/hooks/useBoxDrag';
 import { RootState } from '~/redux/store';
-import { SettingTwo, Lock, Close } from '@icon-park/react';
+import { Close } from '@icon-park/react';
 import { setShowLyric } from '~/redux/slice';
 import style from './index.module.css';
 

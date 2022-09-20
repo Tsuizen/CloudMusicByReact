@@ -1,9 +1,8 @@
-import { Right, RightOne } from '@icon-park/react';
+import { Right } from '@icon-park/react';
 import { useHover } from 'ahooks';
 import { useEffect, useRef, useState } from 'react';
 import { getTsFormatDate } from '~/utils/BaseUtil';
 import { getSongListDetail } from '~/services/api/songList';
-import { getMusicDetail } from '~/services/api/music';
 
 interface RankingListItemProps {
   topTag: {

@@ -1,4 +1,4 @@
-import { FunctionComponent, useEffect, useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 import styles from './index.module.css';
 import { Left, Right } from '@icon-park/react';
 import { useInterval } from 'ahooks';
@@ -9,7 +9,7 @@ interface SlideShowProps {
   setDir: ([]: any) => void;
 }
 
-const SlideShow: FunctionComponent<SlideShowProps> = (props) => {
+const SlideShow: React.FC<SlideShowProps> = (props) => {
   const timer = useRef<number>();
   const [currentKey, setCurrentKey] = useState<number>(0);
   const index = useRef<number>(0);
@@ -49,25 +49,27 @@ const SlideShow: FunctionComponent<SlideShowProps> = (props) => {
     props.setDir(dirCopy); // 保存重新排列的数组 并触发render
   }
   // 点击图标
-  function pointFunc(index: number) {
+  function pointFunc(indexPoint: number) {
     // 按钮点击
     const dirCopy = props.dir;
-    if (index <= currentKey!) {
+    if (indexPoint <= currentKey!) {
       // 鼠标经过左侧的按钮
-      for (let i = 0; i < currentKey! - index; i += 1) {
+      for (let i = 0; i < currentKey! - indexPoint; i += 1) {
         // 判断距离
         const shift = dirCopy.shift(); // 进行数组操作
         dirCopy.push(shift!);
       }
-    } else if (index >= currentKey!) {
+      
+    } else if (indexPoint >= currentKey!) {
       // 鼠标经过右侧的按钮
-      for (let i = 0; i < index - currentKey!; i += 1) {
+      for (let i = 0; i < indexPoint - currentKey!; i += 1) {
         const pop = dirCopy.pop();
         dirCopy.unshift(pop!);
       }
+      ;
     }
     props.setDir(dirCopy); // 触发react-render重新渲染页面
-    setCurrentKey(index); // 记录当前图片节点
+    setCurrentKey(indexPoint); // 记录当前图片节点
   }
 
   return (
@@ -75,36 +77,45 @@ const SlideShow: FunctionComponent<SlideShowProps> = (props) => {
       {/* 外部容器*/}
       <div className='w-full h-40 mx-0 m-auto relative'>
         {/* 内部循环*/}
-        {
-          props.imgUrlList?.map((item, key) => {
-            return (
-              <div key={key} className={`${styles.slide} ${styles[props.dir[key]?.name]}`}>
-                <img src={item.url} className='rounded-lg'></img>
-              </div>
-            );
-          })
-        }
+        {props.imgUrlList?.map((item, key) => {
+          return (
+            <div
+              key={key}
+              className={`${styles.slide} ${styles[props.dir[key]?.name]}`}>
+              <img src={item.url} className='rounded-lg'></img>
+            </div>
+          );
+        })}
         {/* 导航按钮*/}
         <div className={styles.point}>
-          {
-            props.dir.map((item, key) => { // 根据图片数量进行循环
-              return (
-                <span
-                  key={key}
-                  className={item.name === 'start' ? styles.hover : 'bg-gray-600'} // 给予当前显示的按钮样式变化
-                  onMouseEnter={() => pointFunc(key)} // 鼠标进入动画
-                >{ }</span>
-              );
-            })
-          }
+          {props.dir.map((item, key) => {
+            // 根据图片数量进行循环
+            return (
+              <span
+                key={key}
+                className={item.name === 'start' ? styles.hover : 'bg-gray-600'} // 给予当前显示的按钮样式变化
+                onMouseEnter={() => pointFunc(key)} // 鼠标进入动画
+              >
+                {}
+              </span>
+            );
+          })}
         </div>
         {/* 左侧按钮 */}
-        <div onClick={() => { pointFunc(--index.current) }} className='absolute top-0 bottom-0 left-0 m-auto z-40 btn border-0 btn-xs btn-circle bg-gray-500'>
-          <Left theme="outline" size="20" fill="#ffffff" />
+        <div
+          onClick={() => {
+            pointFunc(--index.current);
+          }}
+          className='absolute top-0 bottom-0 left-0 m-auto z-40 btn border-0 btn-xs btn-circle bg-gray-500'>
+          <Left theme='outline' size='20' fill='#ffffff' />
         </div>
         {/* 右侧按钮 */}
-        <div onClick={() => { pointFunc(++index.current) }} className='absolute top-0 bottom-0 m-auto right-0 z-40 btn border-0 btn-xs btn-circle bg-gray-500'>
-          <Right theme="outline" size="20" fill="#ffffff" />
+        <div
+          onClick={() => {
+            pointFunc(++index.current);
+          }}
+          className='absolute top-0 bottom-0 m-auto right-0 z-40 btn border-0 btn-xs btn-circle bg-gray-500'>
+          <Right theme='outline' size='20' fill='#ffffff' />
         </div>
       </div>
     </div>

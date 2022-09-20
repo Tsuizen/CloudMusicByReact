@@ -1,15 +1,7 @@
-import { FunctionComponent } from "react";
+interface SingerCoverItemProps {}
 
-interface SingerCoverItemProps {
-  
-}
- 
-const SingerCoverItem: FunctionComponent<SingerCoverItemProps> = () => {
-  return (
-    <li>
-      Item
-    </li>
-  );
-}
- 
+const SingerCoverItem: React.FC<SingerCoverItemProps> = () => {
+  return <li>Item</li>;
+};
+
 export default SingerCoverItem;

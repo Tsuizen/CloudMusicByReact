@@ -1,20 +1,20 @@
 import { lazy } from 'react';
 import { BrowserRouter, RouteObject, useRoutes } from 'react-router-dom';
-import Fellow from '~/pages/Fellow';
-import FM from '~/pages/FM';
-import NewSongList from '~/pages/NewSongList';
-import RankingList from '~/pages/RankingList';
-import Recommend from '~/pages/Recommend';
-import SingerList from '~/pages/SingerList';
-import SongMenuList from '~/pages/SongMenuList';
-import Video from '~/pages/Video';
 import Loading from '../components/Loading';
-
+import SongMenuList from '~/pages/SongMenuList';
 import Layout from '../layout/index';
 import Hello from '../pages/Hello';
 
 // const Login = lazy(() => import('@/pages/Login'));
-const FindMusic = lazy(() => import('../pages/FindMusic'));
+const FindMusic = lazy(() => import('~/pages/FindMusic'));
+const NewSongList = lazy(() => import('~/pages/NewSongList'));
+const RankingList = lazy(() => import('~/pages/RankingList'));
+const Recommend = lazy(() => import('~/pages/Recommend'));
+const SingerList = lazy(() => import('~/pages/SingerList'));
+
+const Video = lazy(() => import('~/pages/Video'));
+const FM = lazy(() => import('~/pages/FM'));
+const Fellow = lazy(() => import('~/pages/Fellow'));
 
 export const Router = () => {
   if (window.location.pathname === '/') {

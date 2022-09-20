@@ -28,7 +28,7 @@ interface stateType {
   showMusicDetails: false,
   showSearchWindow: false,
   showLyric: false,
-  playSoundId: 1472480890,
+  playSoundId: 139774,
   autoPlay: false,
   currentVolume: 70,
   currentLyric: '歌词',
