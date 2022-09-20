@@ -1,3 +1,4 @@
+import axios from 'axios';
 import { request,get } from '../index'
 
 
@@ -8,6 +9,14 @@ import { request,get } from '../index'
  */
 function cellphoneLogin(params: { phone: string, password: string }) {
   return request({ url: "/login/cellphone", method: 'get', params });
+}
+
+/**
+ * 登出
+ * @param
+ */
+function logout() {
+  return request({ url: "/logout", method: "post" });
 }
 
 /**
@@ -23,6 +32,7 @@ function getUserDetails(uid: string) {
  * 导出所有api
  */
 export {
+  logout,
   getUserDetails,
   cellphoneLogin
 }

@@ -49,4 +49,16 @@ interface MenuType {
   url: string;
   icon: Icon;
 }
-export type { SongType, SearchSuggestType, SongMenuType, MenuType };
+
+interface UserType {
+  account: {
+    id: number;
+    token: string;
+  };
+  profile: {
+    nickname: string;
+    avatarUrl: string;
+  }
+}
+
+export type { SongType, SearchSuggestType, SongMenuType, MenuType, UserType };

@@ -1,4 +1,5 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction, createAsyncThunk } from "@reduxjs/toolkit";
+import storageUtils from "~/utils/storageUtils";
 
 
 interface stateType {
@@ -13,6 +14,8 @@ interface stateType {
   currentVolume: number, // 当前音量
   currentLyric: string, // 当前歌词
   searchWords: string // 当前搜索关键词
+  isLogin: boolean,
+  user: any
 }
 
 /**
@@ -25,11 +28,13 @@ interface stateType {
   showMusicDetails: false,
   showSearchWindow: false,
   showLyric: false,
-  playSoundId: 1815341568,
+  playSoundId: 139774,
   autoPlay: false,
   currentVolume: 70,
   currentLyric: '歌词',
-  searchWords: ''
+  searchWords: '',
+  isLogin: !!storageUtils.getUser().account,
+  user: storageUtils.getUser()
  };
 
 export const slice = createSlice({
@@ -102,11 +107,27 @@ export const slice = createSlice({
         searchWords: action.payload
       }
     },
+    setUserLogin: (state, action: PayloadAction<any>) => {
+      storageUtils.saveUser(action.payload);
+      return {
+        ...state,
+        isLogin: true,
+        user: action.payload
+      }
+    },
+    setUserLogout: (state, action: PayloadAction<any>) => {
+      storageUtils.removeUser();
+      return {
+        ...state,
+        isLogin: false
+      }
+    }
   }
 })
 
 export const { setShowLoginBox, setShowPlayList, setShowDrawer, setShowMusicDetails,
               setShowSearchWindow, setShowLyric, setPlaySoundId, setAutoPlay,
-              setCurrentVolume, setCurrentLyric, setSearchWords } = slice.actions;
+              setCurrentVolume, setCurrentLyric, setSearchWords, setUserLogin, setUserLogout } = slice.actions;
+
 
 export default slice.reducer;

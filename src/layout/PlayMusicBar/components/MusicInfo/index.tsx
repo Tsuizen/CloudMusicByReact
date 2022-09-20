@@ -90,16 +90,8 @@ const MusicInfo: React.FC<MusicInfoProps> = (props) => {
               <div className={styles.musicTitle}>
                 <p>{musicInfo.name}</p>
               </div>
-              {/* <img className='ml-1 w-5' src={likeIcon} /> */}
             </div>
             <span className='text-sm'>{musicInfo.artist}</span>
-          </div>
-          <div>
-            {/* <li data-tip='下载' className='tooltip'>
-              <button className='btn btn-md btn-circle'>
-                <Download theme='outline' size='20' fill='#000' />
-              </button>
-            </li> */}
           </div>
         </div>
       )}
@@ -117,13 +109,6 @@ const MusicInfo: React.FC<MusicInfoProps> = (props) => {
                 dispatch({ type: setShowMusicDetails, payload: false });
               }}
             />
-          </div>
-          {/* 其它的图标列表---喜欢 */}
-
-          <div>
-            <button className='btn btn-md btn-circle'>
-              <Like theme='outline' size='24' fill='#5e5e5e' />
-            </button>
           </div>
         </div>
       )}

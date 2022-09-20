@@ -1,9 +1,9 @@
-import { FunctionComponent, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Outlet, useNavigate, useLocation } from 'react-router-dom';
 
 interface FindMusicProps {}
 
-const FindMusic: FunctionComponent<FindMusicProps> = () => {
+const FindMusic: React.FC<FindMusicProps> = () => {
   const [topBarMenu, setTopNavBar] = useState<string[]>([
     '个性推荐',
     '歌单',
@@ -20,13 +20,13 @@ const FindMusic: FunctionComponent<FindMusicProps> = () => {
 
   useEffect(() => {
     switch (location.pathname) {
-      case '/':
+      case '/findMusic/recommend':
         setActiveMenu('个性推荐');
         break;
-      case '/songMenuList':
+      case '/findMusic/songMenuList':
         setActiveMenu('歌单');
         break;
-      case '/rankingList':
+      case '/findMusic/rankingList':
         setActiveMenu('排行榜');
         break;
     }
@@ -39,23 +39,23 @@ const FindMusic: FunctionComponent<FindMusicProps> = () => {
     switch (name) {
       case '个性推荐':
         setActiveMenu(name);
-        navigate('/'); // 首页
+        navigate('/findMusic'); // 首页
         break;
       case '歌单':
         setActiveMenu(name);
-        navigate('/songMenuList');
+        navigate('/findMusic/songMenuList');
         break;
       case '排行榜':
         setActiveMenu(name);
-        navigate('/rankingList');
+        navigate('/findMusic/rankingList');
         break;
       case '歌手':
         setActiveMenu(name);
-        navigate('/singerList');
+        navigate('/findMusic/singerList');
         break;
       case '最新音乐':
         setActiveMenu(name);
-        navigate('/newSongList');
+        navigate('/findMusic/newSongList');
         break;
     }
   };
@@ -63,7 +63,7 @@ const FindMusic: FunctionComponent<FindMusicProps> = () => {
     <>
       {/* 顶部 */}
       <ul className=' px-3 w-full bg-base-100 menu menu-horizontal '>
-        {topBarMenu.map((item, index) => {
+        {topBarMenu.map((item) => {
           return (
             <li
               key={item}
@@ -73,7 +73,7 @@ const FindMusic: FunctionComponent<FindMusicProps> = () => {
               className={` ${
                 activeMenu === item
                   ? 'bordered  text-xl font-bold'
-                  : 'text-gray-300'
+                  : 'text-gray-400'
               }`}>
               <a>{item}</a>
             </li>
